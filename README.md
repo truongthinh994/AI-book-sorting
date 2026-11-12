@@ -3,8 +3,8 @@
 Chiến dịch hiện tại dựng lại dữ liệu từ ZIP, chỉ giữ **Barcode, Ripped (rách), Wornout (sờn)**. Bỏ Notch/Spot/Tag; không gộp Notch vào rách. Ảnh và weights ở ngoài Git.
 
 - [Notebook Colab độc lập](notebooks/three_kept_colab.ipynb) · [Mở trong Colab](https://colab.research.google.com/github/truongthinh994/AI-book-sorting/blob/feat/three-kept-rebuild/notebooks/three_kept_colab.ipynb)
-- [Cách chuẩn bị, rà, chia nhóm và khóa dữ liệu](docs/THREE_KEPT_CAMPAIGN.md) · [Kết quả rà lượt5](docs/DATASET_KEPT_PASS5.md)
-- Bản r06 cục bộ:620 ảnh/2050 hộp; đã mở đủ620 ảnh ở640px.102 đề xuất nhóm/333 ảnh;49 ảnh nhãn nghi vấn cách ly. Còn duyệt bbox và liên kết nhóm; chưa split/train.
+- [Cách chuẩn bị, rà, chia nhóm và khóa dữ liệu](docs/THREE_KEPT_CAMPAIGN.md) · [Đề xuất nhóm/split r07](docs/DATASET_KEPT_SPLIT_R07.md)
+- Nhãn đã chốt571 ảnh, cách ly49. r07 đề xuất207 nhóm, train/val/test398/86/87; ảnh âm65/14/14.26 nhóm ghép bảo thủ và64 singleton cần xem trong lần duyệt nhóm/split cuối; chưa khóa/train.
 - Notebook giữ `EXPECTED=None` tới khi người dùng duyệt đúng split một lần và khóa SHA; không dùng dataset5 lớp hoặc bản3 lớp gộp Notch cũ.
 
 Công cụ rà ảnh dùng dependency nhẹ riêng:

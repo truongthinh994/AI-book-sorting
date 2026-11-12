@@ -64,6 +64,31 @@ class KeptCampaignTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Labels changed'):
             kept.audit(self.root)
 
+    def test_negative_balance_is_part_of_split_selection(self):
+        """Class-balanced candidates can still concentrate healthy images in one split."""
+        import random
+        from unittest.mock import patch
+        rng = random.Random(0)
+        records, rows = [], []
+        for i in range(48):
+            negative = i % 4 == 0
+            lines = ['0 .5 .5 .2 .2'] * rng.randint(1, 3)
+            if not negative:
+                lines += ['1 .5 .5 .2 .2'] * rng.randint(1, 5)
+                lines += ['2 .5 .5 .2 .2'] * rng.randint(1, 9)
+            records.append(dict(image_id=f'i{i}', image_file=f'i{i}.jpg',
+                                image_sha256=f'{i:064x}', labels=lines,
+                                negative_candidate=negative))
+            rows.append(dict(image_id=f'i{i}', group_id=f'g{i}', label_review='approved',
+                             negative_review='approved' if negative else 'not_needed',
+                             reason='synthetic split-selection fixture'))
+        manifest = dict(dataset_version='synthetic', records=records)
+        with patch.object(kept, 'audit', return_value=(manifest, rows)), patch.object(kept, 'gallery'):
+            plan = kept.propose(self.root, self.base / 'negative-balanced')
+        self.assertEqual(plan['negative_counts'], dict(train=8, val=2, test=2))
+        self.assertTrue(all(set(counts) == set(kept.CLASSES)
+                            for counts in plan['class_counts'].values()))
+
     def test_same_names_wrong_profile_rejected(self):
         path = self.root/'review/manifest.json'
         m = kept.read(path)

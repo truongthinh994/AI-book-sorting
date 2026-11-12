@@ -224,6 +224,8 @@ def propose(root, output):
     ratios = dict(train=.7, val=.15, test=.15)
     totals = Counter(int(s.split()[0]) for rs in groups.values() for r in rs for s in r["labels"])
     total_images = sum(map(len, groups.values()))
+    group_negatives = {g: sum(r['negative_candidate'] for r in rs) for g, rs in groups.items()}
+    total_negatives = sum(group_negatives.values())
     best = None
     for seed in range(42, 74):
         rng = random.Random(seed)
@@ -239,14 +241,17 @@ def propose(root, output):
             counts = {p: Counter(int(s.split()[0]) for g in gs for r in groups[g] for s in r["labels"]) for p, gs in assigned.items()}
             if any(set(cs) != {0, 1, 2} for cs in counts.values()):
                 continue
-            score = (sum(abs(counts[p][c] / totals[c] - ratios[p]) for p in ratios for c in range(3)),
+            negative_error = (sum(abs(sum(group_negatives[g] for g in assigned[p]) / total_negatives - ratios[p])
+                                  for p in ratios) if total_negatives else 0)
+            score = (sum(abs(counts[p][c] / totals[c] - ratios[p]) for p in ratios for c in range(3)) + negative_error,
                      sum(abs(sizes[p] / total_images - ratios[p]) for p in ratios), seed, attempt)
             if best is None or score < best[0]:
                 best = score, assigned, counts
     if best is None:
         raise ValueError("No class-complete split found without breaking groups")
     assignment = {p: [dict(image_id=r["image_id"], image_file=r["image_file"], group_id=g) for g in gs for r in groups[g]] for p, gs in best[1].items()}
-    plan = dict(taxonomy_profile=PROFILE, classes=CLASSES, source_id_mapping=MAPPING,
+    plan = dict(split_algorithm='kept-group-v2-class-negative',
+                taxonomy_profile=PROFILE, classes=CLASSES, source_id_mapping=MAPPING,
                 dataset_version=m["dataset_version"], manifest_sha256=sha(root / "review/manifest.json"),
                 review_csv_sha256=sha(root / "review/review.csv"), seed=best[0][2], attempt=best[0][3],
                 assignment=assignment, quarantined=quarantine, split_ready=False,

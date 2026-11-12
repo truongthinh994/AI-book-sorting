@@ -1,30 +1,33 @@
-Active task: A09
+Active task: NONE
 Last updated: 2026-11-12
 Branch: feat/three-kept-rebuild
 Last green commit: e369f0dade213445bd929c4e61b2fb96fcf3367e
 
-## Điểm tiếp tục — D29, repo đích mới
+## Điểm tiếp tục — chốt nhãn, duyệt nhóm/split r07
 
-Người dùng yêu cầu đẩy sang truongthinh994/AI-book-sorting rồi tiếp tục. Remote delivery trỏ repo đích, origin cũ giữ nguyên. Đã xuất bản nhánh feat/three-kept-rebuild và draft PR https://github.com/truongthinh994/AI-book-sorting/pull/1, không merge. Repo đích ban đầu chỉ có README; nhập snapshot tracked có parent main đích để PR có lịch sử chung, không đưa thay đổi cũ chưa commit lên.
+Người dùng chốt nhãn và cách ly đúng49 ảnh, yêu cầu làm bước tiếp theo. Nhãn571 ảnh được nhận; quyết định không tự trở thành approval nhóm/split. A09/A10 BLOCKED chờ một lần duyệt bản cụ thể dưới đây, không có CODEX IN_PROGRESS. Không chuyển sang train hoặc task ngoài phạm vi.
 
-## Dữ liệu và tiến độ A09
+## Dữ liệu thực tế
 
-- D29: nguồn ZIP mới, Barcode0/Ripped1/Wornout2; bỏ Notch/Spot/Tag, không gộp Notch vào Ripped. Chỉ kế thừa sửa có audit trong chính chiến dịch kept, không replay chiến dịch5 lớp. Train sau một lần người dùng duyệt đúng split đã rà.
-- Bản hoạt động: data/local/campaign-v4-three-kept-2026-11-12-r06, version three-kept-4c4d10dc50f0f52e8c31.620 ảnh/2050 hộp: Barcode301,Ripped411,Wornout1338;42 nhãn rỗng/101 ứng viên âm. Nhãn571pending/49rejected,0approved; âm93pending/8rejected,0approved.
-- Đã mở đủ620 ảnh640:sheet001–078. Lượt4 xem160 mới#241–400,51 gốc riêng,4 crop4x;35 patch tạo r05 (+35/-1 Barcode). Lượt5 xem220 mới#401–620,59 gốc riêng,5 crop4x;42 patch tạo r06 (+36/-6 Barcode,1 Wornout→Barcode#608). Xem lại đủ35+42 ảnh sửa qua11 sheet bbox. Nguồn/version trước bất biến. Đây là lượt xem đầy đủ, chưa hoàn thành duyệt bbox/nhóm.
-- Tổng102 đề xuất nhóm/333 ảnh có group_id;287 ảnh chưa có đề xuất, không mặc định coi độc lập. Chưa chứng minh liên kết toàn dataset. Sửa đề xuất sai#5 SF Philosophy từng ghép vào ThirdHumanity4; tiêu đề/ID xác nhận#494/#605/#619 thuộc ThirdHumanity4, #620 đi cùng#587/TheArtOfContraryThinking. Không kế thừa split cũ. Chi tiết ../DATASET_KEPT_PASS4.md, ../DATASET_KEPT_PASS5.md và r06 reports/group-proposals-pass5.json/errata-pass5.json.
-- 49 ảnh nhãn rejected,8 âm rejected:#42/#110/#125/#160/#167/#323/#447/#483. Đầy đủ ID/lý do trong r06 reports/pass5-summary.json và review.csv. Không vẽ đoán mã mờ, không auto gộp Notch vào rách hay đổi lỗi thành âm sạch. #608 tăng ứng viên âm từ100 lên101 sau sửa nhãn sai lớp, chưa duyệt âm.
-- r06 reports: review.html,observations-pass5.json,group-proposals-pass5.json,errata-pass5.json,unresolved-group-queue.json,review-progress.json,patches-05.json,box-spec-pass5.json,validation-pass5.json,source-immutability-pass5.json. Sheet ở bản đầu reports/native-review còn là nhãn trước sửa; patch-review-01–06 của r06 là nhãn hiện hành. Giữ r04/r05/source bất biến, chỉ thêm report dẫn xuất phục vụ patch. Launcher ReviewThreeKept.cmd mở r06.
-- Notebook giữ EXPECTED=None; chưa có split/proposal/approval người dùng, chưa smoke/train hoặc best.pt/last.pt. Chưa hỏi duyệt cuối khi chưa có bản cụ thể.
+- Folder `data/local/campaign-v4-three-kept-2026-11-12-r07/`, ảnh/nhãn/source giữ nguyên r06. Version nội dung `three-kept-4c4d10dc50f0f52e8c31`, metadata `group-review-r07-v1`;620 ảnh/2050 hộp vẫn bảo toàn,571 nhận nhãn/49 rejected. Sau loại49:1920 hộp Barcode284/Ripped356/Wornout1280;93 âm nhận/8 cách ly. Không sửa thêm bbox/pixel, không replay nhãn cũ hoặc gộp Notch.
+- Đối chiếu lại102 nhóm/287 ảnh chưa nối của r06 bằng atlas toàn cục và gốc640 khi cần.207 nhóm đề xuất:117 khớp tiêu đề/ID/thiết kế,26 ghép bảo thủ có thể chứa nhiều cuốn,64 singleton chưa tìm thấy đối ảnh. Chưa chứng minh độc lập vật lý của mọi sách. CSV lịch sử và SIFT chỉ gợi ý; nền gỗ/tem chung không là bằng chứng. Decoder hiện có chỉ đọc thành công1 ảnh, không đủ chứng minh không trùng barcode. Chi tiết DATASET_KEPT_SPLIT_R07.md và reports/group-review.json/group-decisions.json.
+- Đã tách gợi ý ghép sai Bukhak95/460 khỏi Dokgong90/157,577 khỏi SeismicDesign212/222;116 khỏi Camus,36 khỏi WantToMeetAgain. Nối Musso Seras-tu-là và LeaderConditions; grouping bảo thủ ghi rõ từng ca.49 cách ly giữ nguyên r06,8 âm cách ly giữ nguyên.
+- Bản cần duyệt: `r07/proposed-02/index.html`; launcher ReviewThreeKept.cmd mở trang này.398 train/86val/87test,139/35/33 nhóm,65/14/14 âm. Hộp Barcode/Ripped/Wornout: train199/247/895,val41/55/156,test44/54/229. Seed45/attempt25, thuật toán kept-group-v2-class-negative. Mỗi lớp val/test hơn20 hộp; không tách nhóm để ép cân bằng sờn.
+- SourceZIP SHA `dc2a81293b0f841b0fd187a410b869a1fc9021077ffc6221f9f33621ff978197`; manifest `8e316ef234b0cf9b9e83f14d58af6f51331473e95365776b2daf2a19b61e4f77`; CSV `aee6a076e830248d3c52f5742c7d0e0cbb937ebbf8ff3edfb5361af49ac2f8fc`; group-review `62186c1b70a977ba8c04c29330605576a2e7c566d2f564f30395e0d1322d89b6`.
+- ProposalSHA `13ae187e222c1b8b33bbdb53093606cc07cb86b1f68bc465779e8f581c3cede9`. `split_ready=false`, không có approval/lock, notebook EXPECTED=None, GPU/Colab/camera NOT_RUN, chưa best.pt/last.pt. Bản đầu `proposed/` dùng v1/âm71/8/14 chỉ lưu đối chiếu, không chọn để khóa.
 
-## Kiểm tra và xuất bản
+## Kiểm tra
 
-14 tests công cụ PASS8.862s trên working tree d7cde64+thay đổi cũ có sẵn; không gán kết quả cho SHA nguyên trạng. Audit r04/r05/r06 và ZIP Downloads PASS; nguồn/620 pixel ảnh không đổi, Ripped giữ nguyên, Wornout chỉ sửa lớp#608. Manifest r06 SHA8e316ef234b0cf9b9e83f14d58af6f51331473e95365776b2daf2a19b61e4f77; reviewCSV9822e9c97ab686e06b54aa3a34c6e9ffd7c2959620f4d4b310eb68dc46dad849. Checker/xuất bản cuối xem SESSION_LOG. UI browser/GPU/camera NOT_RUN; file:// bị chặn trước đó, không lách policy.
+reports/split-validation.json PASS audit nguồn/revisions, r06/source Downloads bất biến,620pixel/TXT không đổi, đúng49 cách ly, không giao image_id/group_id/fileSHA/pixelRGBSHA và tái đề xuất bằng nhau. Đây là kiểm nhóm được khai báo và trùng nội dung chính xác, không chứng nhận toàn bộ danh tính vật lý.
 
-CI repo đích lần đầu thất bại vì thiếu Pillow ở requirements CI. Đã đọc log: ModuleNotFoundError PIL, không lỗi dữ liệu. Thêm dependency review nhẹ riêng vision/yolo/requirements-review.txt và CI install, giữ collector requirements. Remote88c72bd: CI success, run43235243033. Xem SESSION_LOG cho kiểm cuối và remote SHA mới nhất.
+Regression trước sửa FAIL8/3/1 âm ở fixture48 nhóm; sau sửa PASS8/2/2.15 tests kept/training PASS7.494s. Toàn working tree152 tests PASS46.790s, có thay đổi cũ chưa commit; không gán kết quả này cho sourceHEAD nguyên trạng. Kiểm/publish cuối xem SESSION_LOG và r07 reports/publication-r07.json. UI browser NOT_RUN do file:// bị policy chặn từ phiên trước, không lách qua HTTP/khác surface. Không cài decoder mới.
 
-Local branch feat/three-kept-rebuild giữ lịch sử source. Local ref publish/ai-book-three-kept giữ lịch sử nhánh ở repo đích, hiện đã có main đích làm ancestor. Khi xuất bản thay đổi tracked đã kiểm: commit source đúng allowlist; tạo commit-tree từ source HEAD tree, parent là publish/ai-book-three-kept; update-ref có kiểm parent, push ref publish sang delivery:feat/three-kept-rebuild, không force. Không push trực tiếp source HEAD khác lịch sử vào delivery. Nếu remote có thay đổi mới, fetch/đối chiếu trước; không ghi đè. Không commit thay đổi cũ chưa được stage từ đầu phiên.
+## Human actions pending
 
-## Việc tiếp tục
+Duyệt nhóm/split r07 proposed-02 đúng SHA trên, chú ý26 nhóm bảo thủ và64 singleton. Đây là gate một lần đã có trong kế hoạch, chưa yêu cầu duyệt train riêng. Nếu người dùng chấp nhận đúng bản: ghi approval gắn SHA, đóng A09, hoàn tất A10 bằng lock, tạo datasetZIP/checksum, điền EXPECTED rồi xử lý Colab/Drive theo quyền truy cập thực tế. Nếu thay nhóm, tạo review/proposal version mới rồi duyệt; không ghi đè r07. Không tự tạo approval thay người dùng.
 
-A09: đã xem đủ620; tiếp tục đối chiếu102 nhóm đề xuất/287 ảnh chưa có liên kết,49 ca cách ly và độ chính xác từng bbox, duyệt101 ứng viên âm riêng. Bắt đầu từ r06 reports/unresolved-group-queue.json và pass5-summary.json, không mở lại toàn bộ từ đầu hoặc coi pending đã duyệt. Chỉ khi đủ nhãn/nhóm mới A10 đề xuất split70/15/15 theo nhóm, người dùng duyệt đúng bản một lần, khóa SHA rồi train Colab. Không tự nghiệm thu phần cứng.
+## Xuất bản mã
+
+Người dùng chỉ định repo truongthinh994/AI-book-sorting; origin cũ giữ nguyên. DraftPR https://github.com/truongthinh994/AI-book-sorting/pull/1, không merge. GitHubZIP chỉ có mã/tài liệu, không chứa ảnh/weights/reviewHTML. Source branch giữ lịch sử gốc, local ref publish/ai-book-three-kept giữ lịch sử repo đích.
+
+Trước push: xác minh delivery:feat/three-kept-rebuild khớp ref publish. Commit source đúng allowlist; commit-tree từ sourceHEAD tree,parent publish, update-ref có kiểm parent rồi normalpush publish sang delivery:feat/three-kept-rebuild. Không push trực tiếp sourceHEAD khác lịch sử, không force. Giữ mọi modified/untracked legacy có sẵn; không stage chúng. CI/deliverySHA cuối ghi localpublicationreport và bàn giao.
