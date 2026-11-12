@@ -1,0 +1,19 @@
+# Công cụ hỗ trợ
+
+| Công cụ | Mục đích |
+|---|---|
+| capture_covers.py | Chạy collector từ thư mục bất kỳ |
+| check_repository.py | Kiểm cú pháp nguồn Python, link tài liệu và workspace |
+| benchmark_cover_geometry.py | So góc/crop và thời gian OpenCV trước/sau trên ma trận synthetic; không camera/QR timing |
+| benchmark_preview.py | So lịch UI trước/sau với delay phân tích synthetic; không đo webcam thật |
+| windows/CaptureCovers.cmd | Chạy collector với venv tại root trên Windows |
+| windows/camera-priority | Tiện ích tùy chọn quản lý camera A4tech |
+
+```powershell
+& '.\.venv\Scripts\python.exe' scripts/check_repository.py
+& '.\.venv\Scripts\python.exe' scripts/capture_covers.py --camera 0
+```
+
+Tiện ích camera-priority có bộ test mô phỏng riêng, không cài task hoặc thao tác PnP trong CI. [Hướng dẫn](windows/camera-priority/README.md).
+
+- `windows/ReviewDataset.cmd`: mở trang rà620 ảnh cục bộ đã chuẩn bị cho campaign-v2; xem [hướng dẫn sửa nhãn](../docs/LABEL_REVISIONS.md). Clone sạch chưa có dữ liệu/page local.
