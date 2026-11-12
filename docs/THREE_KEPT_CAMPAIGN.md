@@ -10,7 +10,7 @@ Ngày 2026-11-12, quyết định D29 theo kế hoạch người dùng yêu cầ
 - 78 sheet hỗ trợ rà gốc và20 cặp pHash gợi ý nằm trong `reports/native-review` của bản đầu; không phải bằng chứng đã rà toàn bộ hoặc nhóm đã xác nhận. Hai cặp nguồn vượt train/test cũ phải kiểm liên kết sách, không dùng split618/1/1.
 - Chưa có split đề xuất/được duyệt/khóa. Notebook giữ `EXPECTED=None`, không được train. GPU/Colab và chất lượng model NOT_RUN; không có best.pt/last.pt của chiến dịch này.
 
-Checkpoint hiện tại: **r04**, version `three-kept-e64b4b01e90b4ebf5e8a`,620 ảnh/1986 hộp (Barcode236/Ripped411/Wornout1339),56 nhãn rỗng/100 ứng viên âm. Đã mở240/620 ảnh ở640px, còn380. Có35 đề xuất nhóm/97 ảnh,16 ảnh nhãn rejected; chưa có approved. Chi tiết [lượt3](DATASET_KEPT_PASS3.md); lịch sử [lượt2](DATASET_KEPT_PASS2.md). Mã/notebook được xuất bản ở repo mới do người dùng chỉ định: [AI-book-sorting](https://github.com/truongthinh994/AI-book-sorting/tree/feat/three-kept-rebuild), [draft PR1](https://github.com/truongthinh994/AI-book-sorting/pull/1). Chưa merge.
+Checkpoint hiện tại: **r06**, version `three-kept-4c4d10dc50f0f52e8c31`,620 ảnh/2050 hộp (Barcode301/Ripped411/Wornout1338),42 nhãn rỗng/101 ứng viên âm. Đã mở đủ620/620 ảnh ở640px, còn duyệt bbox và liên kết toàn cục. Có102 đề xuất nhóm/333 ảnh,287 ảnh chưa có đề xuất nhóm;49 ảnh nhãn rejected, chưa có approved. #608 sửa Wornout gán nhầm tem thành Barcode, tăng một ứng viên âm. Đã tách #5 SF Philosophy khỏi nhóm ThirdHumanity4 bị đề xuất sai trước đó. Chi tiết [lượt5](DATASET_KEPT_PASS5.md); lịch sử [lượt4](DATASET_KEPT_PASS4.md), [lượt3](DATASET_KEPT_PASS3.md), [lượt2](DATASET_KEPT_PASS2.md). Mã/notebook được xuất bản ở repo mới do người dùng chỉ định: [AI-book-sorting](https://github.com/truongthinh994/AI-book-sorting/tree/feat/three-kept-rebuild), [draft PR1](https://github.com/truongthinh994/AI-book-sorting/pull/1). Chưa merge.
 
 ## Lệnh chạy
 
@@ -18,7 +18,7 @@ Chạy tại root repo bằng Python3.11 trong venv YOLO hiện có. Trang rà/s
 
 ```powershell
 $py = '..\.venv-yolo\Scripts\python.exe'
-$campaign = 'data/local/campaign-v4-three-kept-2026-11-12-r04'
+$campaign = 'data/local/campaign-v4-three-kept-2026-11-12-r06'
 & $py -m vision.yolo.kept audit --campaign $campaign
 & $py -m vision.yolo.kept review --campaign $campaign --output "$campaign/reports/review.html"
 ```
