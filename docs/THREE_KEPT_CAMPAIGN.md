@@ -5,18 +5,20 @@ Ngày 2026-11-12, quyết định D29 theo kế hoạch người dùng yêu cầ
 ## Trạng thái thực tế
 
 - Folder đầu: `data/local/campaign-v4-three-kept-2026-11-12` (ngoài Git). Đã giải nén nguyên trạng, copy ZIP và audit từng ảnh/nhãn so với ZIP. 620 ảnh, 1.944 hộp: Barcode194, Ripped411, Wornout1339;63 nhãn rỗng,100 ứng viên âm. Nguồn SHA256 `dc2a81293b0f841b0fd187a410b869a1fc9021077ffc6221f9f33621ff978197`.
-- Đã mở 24 ảnh với bbox ở kích thước640 trên3 sheet; mở riêng #3/#15/#22 để đối chiếu. Phát hiện hai Barcode thiếu (#3, ISBN thứ hai #15) và một Barcode sai là tem chữ/số (#22). Patch có actor/lý do/hash, không replay sửa cũ.
+- Checkpoint trước lượt2: đã mở 24 ảnh với bbox ở kích thước640 trên3 sheet; mở riêng #3/#15/#22 để đối chiếu. Phát hiện hai Barcode thiếu (#3, ISBN thứ hai #15) và một Barcode sai là tem chữ/số (#22). Patch có actor/lý do/hash, không replay sửa cũ.
 - Bản sau sửa: `data/local/campaign-v4-three-kept-2026-11-12-r02`, 620 ảnh/1.945 hộp, Barcode195/Ripped411/Wornout1339,62 nhãn rỗng/100 ứng viên âm. Chưa ảnh/nhóm nào approved; **còn596 ảnh chưa mở**. #1 bbox Ripped lớn, #24 Barcode nhỏ cần đối chiếu tiếp.
 - 78 sheet hỗ trợ rà gốc và20 cặp pHash gợi ý nằm trong `reports/native-review` của bản đầu; không phải bằng chứng đã rà toàn bộ hoặc nhóm đã xác nhận. Hai cặp nguồn vượt train/test cũ phải kiểm liên kết sách, không dùng split618/1/1.
 - Chưa có split đề xuất/được duyệt/khóa. Notebook giữ `EXPECTED=None`, không được train. GPU/Colab và chất lượng model NOT_RUN; không có best.pt/last.pt của chiến dịch này.
 
+Checkpoint hiện tại: **r03**, version `three-kept-718b59c52ce639f24518`,620 ảnh/1965 hộp (Barcode215/Ripped411/Wornout1339),59 nhãn rỗng/100 ứng viên âm. Đã mở120/620 ảnh ở640px, còn500. Có14 đề xuất nhóm/33 ảnh,8 ảnh nhãn rejected; chưa có approved. Chi tiết [lượt2](DATASET_KEPT_PASS2.md). Mã/notebook được xuất bản ở repo mới do người dùng chỉ định: [AI-book-sorting](https://github.com/truongthinh994/AI-book-sorting/tree/feat/three-kept-rebuild), [draft PR1](https://github.com/truongthinh994/AI-book-sorting/pull/1). Chưa merge.
+
 ## Lệnh chạy
 
-Chạy tại root repo bằng Python3.11 trong venv YOLO hiện có. Module mới độc lập giữ nguyên công cụ/profile lịch sử, tránh thay đổi đang dở trong các file cũ.
+Chạy tại root repo bằng Python3.11 trong venv YOLO hiện có. Trang rà/sheet cần `pip install -r vision/yolo/requirements-review.txt`; dependency này cũng được cài riêng trong CI, không thêm Torch/YOLO vào collector. Module mới độc lập giữ nguyên công cụ/profile lịch sử, tránh thay đổi đang dở trong các file cũ.
 
 ```powershell
 $py = '..\.venv-yolo\Scripts\python.exe'
-$campaign = 'data/local/campaign-v4-three-kept-2026-11-12-r02'
+$campaign = 'data/local/campaign-v4-three-kept-2026-11-12-r03'
 & $py -m vision.yolo.kept audit --campaign $campaign
 & $py -m vision.yolo.kept review --campaign $campaign --output "$campaign/reports/review.html"
 ```

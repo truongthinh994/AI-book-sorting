@@ -1,4 +1,22 @@
-# PBL5 · Library Book Inspection
+# AI Book Sorting
+
+Chiến dịch hiện tại dựng lại dữ liệu từ ZIP, chỉ giữ **Barcode, Ripped (rách), Wornout (sờn)**. Bỏ Notch/Spot/Tag; không gộp Notch vào rách. Ảnh và weights ở ngoài Git.
+
+- [Notebook Colab độc lập](notebooks/three_kept_colab.ipynb) · [Mở trong Colab](https://colab.research.google.com/github/truongthinh994/AI-book-sorting/blob/feat/three-kept-rebuild/notebooks/three_kept_colab.ipynb)
+- [Cách chuẩn bị, rà, chia nhóm và khóa dữ liệu](docs/THREE_KEPT_CAMPAIGN.md) · [Kết quả rà lượt2](docs/DATASET_KEPT_PASS2.md)
+- Bản r03 cục bộ:620 ảnh/1965 hộp; đã mở120 ảnh ở640px, còn500 ảnh.14 đề xuất nhóm/33 ảnh;8 ảnh nhãn nghi vấn cách ly. Chưa duyệt xong nhãn/nhóm, chưa split/train.
+- Notebook giữ `EXPECTED=None` tới khi người dùng duyệt đúng split một lần và khóa SHA; không dùng dataset5 lớp hoặc bản3 lớp gộp Notch cũ.
+
+Công cụ rà ảnh dùng dependency nhẹ riêng:
+
+```powershell
+python -m pip install -r requirements.txt -r vision/yolo/requirements-review.txt
+python -m vision.yolo.kept --help
+```
+
+## Collector hiện có
+
+Phần dưới mô tả ứng dụng thu ảnh và phần cứng legacy. Trạng thái chiến dịch dataset/train hiện tại nằm ở các liên kết phía trên.
 
 **Ưu tiên mới2026-11-12:** [kế hoạch rà620 ảnh và train Colab](docs/MODEL_TRAINING_PLAN.md) · [quy tắc rà nhãn](docs/LABEL_REVIEW_GUIDE.md). Khóa dataset mới trước chiến dịch train; bộ361 ảnh/notebook bên dưới là phiên bản trước.
 
@@ -6,11 +24,11 @@ Bước hiện tại: [chuẩn hóa Damaged Books v1 năm nhãn và rà lại sp
 
 Hệ thống thử nghiệm kiểm tra tình trạng và phân loại sách thư viện bằng Machine Vision và AI. Hiện có ứng dụng thu ảnh OpenCV/QR và bộ công cụ chuẩn bị dữ liệu, huấn luyện YOLO trên Colab. AI phân tuyến và cơ cấu ESP32 chưa được nghiệm thu.
 
-[![Checks](https://github.com/nguyenhuunghia10t1-creator/pbl5-library-book-inspection/actions/workflows/checks.yml/badge.svg)](https://github.com/nguyenhuunghia10t1-creator/pbl5-library-book-inspection/actions/workflows/checks.yml)
+[![Checks](https://github.com/truongthinh994/AI-book-sorting/actions/workflows/checks.yml/badge.svg?branch=feat%2Fthree-kept-rebuild)](https://github.com/truongthinh994/AI-book-sorting/actions/workflows/checks.yml)
 ![Python](https://img.shields.io/badge/Python-3.13%2B-3776AB?logo=python&logoColor=white)
 ![PlatformIO](https://img.shields.io/badge/Firmware-PlatformIO-F5822A?logo=platformio&logoColor=white)
 
-## Phạm vi
+## Phạm vi collector legacy
 
 - Nhận dạng bìa sách A6 và mã QR của từng bản sách.
 - Căn chỉnh phối cảnh, kiểm tra độ nét và ánh sáng, thu ảnh có metadata.
@@ -48,8 +66,8 @@ data/                   Hướng dẫn quản lý dữ liệu cục bộ
 Yêu cầu: Git, Python và Windows để sử dụng camera DirectShow/MSMF. Firmware sử dụng PlatformIO; không cài chung công cụ firmware vào môi trường Python của ứng dụng.
 
 ```powershell
-git clone https://github.com/nguyenhuunghia10t1-creator/pbl5-library-book-inspection.git
-cd pbl5-library-book-inspection
+git clone --branch feat/three-kept-rebuild https://github.com/truongthinh994/AI-book-sorting.git
+cd AI-book-sorting
 py -m venv .venv
 & '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
 ```
