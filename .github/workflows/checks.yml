@@ -23,6 +23,8 @@ jobs:
           cache-dependency-path: |
             requirements.txt
             vision/opencv/requirements.txt
+            vision/yolo/requirements-review.txt
       - run: python -m pip install -r requirements.txt
+      - run: python -m pip install -r vision/yolo/requirements-review.txt
       - run: python scripts/check_repository.py
       - run: python -m unittest discover -s tests -v
