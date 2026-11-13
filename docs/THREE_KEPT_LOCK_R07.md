@@ -1,5 +1,7 @@
 # Khóa dataset r07 và bàn giao Colab
 
+> Cập nhật A02 2026-11-13: baseline YOLO11n trên T4 đã hoàn tất; validation và artifact thật xem [báo cáo baseline](BASELINE_R07.md). Chưa chọn model/ngưỡng hoặc đánh giá test cuối.
+
 > Cập nhật 2026-11-13 sau mount: smoke n/s trên T4 đều PASS2epoch,batch16; A11/H08 hoàn thành. A02 full baseline là bước tiếp theo, chưa chạy. Xem [báo cáo smoke GPU](COLAB_SMOKE_R07.md).
 
 Ngày 2026-11-13 (Asia/Saigon), người dùng chấp nhận bản r07 proposed-02 và yêu cầu làm tiếp. Approval ghi nguyên văn trong reports/user-approval-proposed-02.json ngoài Git, gắn proposal SHA `13ae187e222c1b8b33bbdb53093606cc07cb86b1f68bc465779e8f581c3cede9`. A09/A10 hoàn thành; A11 còn cần smoke GPU.

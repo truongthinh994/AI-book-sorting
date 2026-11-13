@@ -3,31 +3,23 @@ Last updated: 2026-11-13
 Branch: feat/three-kept-rebuild
 Last green commit: e369f0dade213445bd929c4e61b2fb96fcf3367e
 
-## Điểm tiếp tục — A11/H08 smoke GPU đạt, A02 baseline sẵn sàng
+## Điểm tiếp tục — A02 baseline thật đã xong
 
-Người dùng đã chọn tài khoản Pro trong Colab và yêu cầu làm tiếp; đã xác nhận cấp quyền mount Drive ngay tại bước OAuth. Đã tạo folder PBL5-three-kept-r07 trong MyDrive của tài khoản Pro; tài khoản connector hiện có được editor trên đúng folder, general access restricted, tắt email thông báo. Copy ZIP/lock/notebook qua Drive API, không bật quyền file URL của extension. Không đăng email tài khoản Pro hoặc log riêng lên Git.
+Người dùng yêu cầu train; đã hoàn tất run n640-default-seed42-01 trên ColabT4,640/batch16/seed42,AdamW/lr0=.001/AMP,giới hạn100epochs/patience20. Epoch thực tế38,stopped_before_limit=True. A02 DONE,không có CODEX IN_PROGRESS. A11/H08/A09/A10 giữ DONE.
 
-Notebook đang mở: https://colab.research.google.com/drive/1Z9_1-5Y0WMHzDvIOPn1d_1MGYcG7QWT6?authuser=1
-Drive: https://drive.google.com/drive/folders/1b0L0gXSYFAWRnblHw3oa_Ar6g8Igqx0D
-Summary: https://drive.google.com/file/d/1ki-XlQsorFHJhaOlwEdcw-f038mQmP9U/view
+Đã kiểm ZIP/splitmanifest/inventory gốc trước train; dataset r07 giữ398/86/87 và49 cách ly,không đổi dữ liệu. Run identity/config/environment/CSV/weights SHA lưu Drive; explicit validation best.pt đủ3lớp. Macro damage AP50–95=0.036777; chi tiết docs/BASELINE_R07.md. Một baseline chưa chứng minh model tốt nhất hoặc sẵn sàng camera.
 
-GPU Tesla T4 14913MiB,Python3.13.16,Torch2.14.1+cu130,Ultralytics8.4.208. Drive mount và split SHA thực PASS:398/86/87,version three-kept-4c4d10dc50f0f52e8c31. Dataset/nhãn/nhóm/49 cách ly không đổi; checksum độc lập configs/three-kept-r07.lock.json. A09/A10 vẫn DONE.
-
-smoke-n16-01 và smoke-s16-01 mỗi2epoch,batch16,640,seed42,AdamW,lr0=.001,AMP hoàn tất; GPU_mem trong log n2.86G/s5.12G,không OOM. Đã kiểm CSV2dòng/run,checkpoint best/last tồn tại và SHA; config/seed/hash/environment khớp,check_resume nhận identity đúng và từ chối SHA sai. Các tests CPU resume giữ riêng; chạy tiếp GPU sau gián đoạn NOT_RUN. Hai smoke đã kết thúc và optimizer được Ultralytics strip; không resume chúng để biến thành baseline.
-
-A11/H08 DONE theo evidence smoke; A02 TODO, không tự bắt đầu task kế tiếp. Chưa có lượt100epoch,model bàn giao,threshold hoặc đánh giá test. Không dùng AP smoke để chọn model. Chi tiết docs/COLAB_SMOKE_R07.md.
+Notebook https://colab.research.google.com/drive/1Z9_1-5Y0WMHzDvIOPn1d_1MGYcG7QWT6?authuser=1
+Drive https://drive.google.com/drive/folders/1b0L0gXSYFAWRnblHw3oa_Ar6g8Igqx0D
+Local report data/local/campaign-v4-three-kept-2026-11-12-r07/reports/baseline-validation.json. Không commit dataset,weights hoặc log riêng.
 
 ## Một việc tiếp theo
 
-A02: giữ runtime và dataset hiện có; ở ô train chọn MODEL='n',GENTLE=False,SEED=42,BATCH=16,SMOKE=False,RESUME=False,RUN_TAG='n640-default-seed42-01' (kiểm tên chưa tồn tại),chạy baseline100epochs/patience20. Cloud notebook có ô audit smoke mới sau ô train; ô validation/full và test phía sau chưa chạy. Không Run all vì khối validation smoke cố ý chặn. Không yêu cầu duyệt dataset/train lần nữa.
+A12: các cấu hình so sánh/seed tiếp theo theo chiến dịch trước khi chọn model/ngưỡng. Chưa tự chạy thêm model khác,threshold hoặc held-out test. Người dùng có thể yêu cầu lượt tiếp; không cần duyệt dataset lại. Nếu tiếp tục Colab, giữ môi trường/batch/hash; tên run mới riêng. Notebook có cell audit smoke sau train, không Run all.
 
-## Human actions pending
+## Giới hạn và kiểm tra
 
-Không còn chờ đăng nhập hoặc mount cho phiên hiện tại. Không có yêu cầu người dùng mới để hoàn tất A11. Nếu runtime bị thu hồi thì xác minh mount/identity/checkpoint trước tiếp tục; quyền không tự đồng nghĩa compute units trả phí đã được xác minh.
-
-## Kiểm tra
-
-Windows/PowerShell/Python3.11.9 ../.venv-yolo/Scripts/python.exe: repository checker PASS49sources;15 kept/training tests PASS12.586s tại source5e5e29d + legacy working-tree changes. Colab GPU runtime là môi trường riêng nêu trên. Real summary đọc lại từ Drive PASS. Không gán các kết quả working tree cho pristine HEAD; giữ mọi legacy modifications ngoài commit.
+Threshold/test cuối NOT_RUN; không kết luận accuracy phân loại toàn sách từ bbox AP. GPU interruption/resume NOT_RUN,identity gate/CPU fixtures đã kiểm ởA11. Baseline checker49sources và15 tests PASS11.357s trên88bb351 + working-tree changes; mọi legacy modifications giữ nguyên và ngoài commit. CI tracked-tree của bản xuất bản ghi riêng trong report sau khi có kết quả thật.
 
 ## Xuất bản mã
 

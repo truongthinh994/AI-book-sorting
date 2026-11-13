@@ -1,5 +1,7 @@
 # Kế hoạch kỹ thuật
 
+> Cập nhật A02 2026-11-13: baseline YOLO11n trên T4 đã hoàn tất; validation và artifact thật xem [báo cáo baseline](BASELINE_R07.md). Chưa chọn model/ngưỡng hoặc đánh giá test cuối.
+
 > Cập nhật 2026-11-13 sau mount: smoke n/s trên T4 đều PASS2epoch,batch16; A11/H08 hoàn thành. A02 full baseline là bước tiếp theo, chưa chạy. Xem [báo cáo smoke GPU](COLAB_SMOKE_R07.md).
 
 > Cập nhật 2026-11-13: người dùng đã duyệt r07 proposed-02; dataset đã khóa, notebook đã điền SHA và tải Drive. Colab đang chờ đăng nhập để smoke GPU. Xem [bàn giao hiện tại](THREE_KEPT_LOCK_R07.md); các trạng thái chưa duyệt bên dưới là lịch sử trước xác nhận.
