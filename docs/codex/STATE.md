@@ -28,3 +28,7 @@ Người dùng chỉ định repo truongthinh994/AI-book-sorting; origin cũ gi�
 Trước push: xác minh delivery:feat/three-kept-rebuild khớp ref publish. Commit source đúng allowlist; commit-tree từ sourceHEAD tree,parent publish, update-ref có kiểm parent rồi normalpush publish sang delivery:feat/three-kept-rebuild. Không push trực tiếp sourceHEAD khác lịch sử, không force. Giữ mọi modified/untracked legacy có sẵn; không stage chúng. CI/deliverySHA cuối ghi localpublicationreport và bàn giao.
 
 Tài khoản Drive được connector get_profile xác minh: nguyentruongthinh9904@gmail.com (Thịnh Nguyễn Trường). Đây là tài khoản lưu artifacts; không suy từ tài khoản đăng nhập ChatGPT.
+
+## Cập nhật truy cập cuối phiên
+
+Đã quan sát notebook mở thành công trong Colab bằng nguyentruongthinh9904@gmail.com, chưa kết nối runtime. Người dùng muốn chọn Gmail có Gemini Pro; đã mở trang Add another account trong Edge để người dùng đăng nhập. Chờ chốt tài khoản chạy và quyền truy cập dataset tương ứng trước smoke. Nếu khác Gmail Drive kết nối, phải đưa ZIP/lock/notebook vào đúng Drive hoặc cấu hình truy cập phù hợp, không tự chia sẻ công khai.

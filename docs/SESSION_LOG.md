@@ -440,3 +440,6 @@ Publication: implementation commit36b989c created. First push failed connection4
 - Next action A11: user signs into Colab with the connected Drive account, then GPU n/s smoke and common batch selection. Do not start app/firmware/test evaluation.
 
 - Follow-up account clarification: Google Drive get_profile verified nguyentruongthinh9904@gmail.com (Thịnh Nguyễn Trường); user informed. This supersedes earlier unknown-account observation, without inferring ChatGPT login account.
+
+- Final browser observation: original Drive account is signed in and notebook loads in Colab; no runtime connected. User requested reopening login and asked about Gemini Pro. Opened Add another account login in Edge and left handoff. Official Colab FAQ confirms eligible paid Google AI plans include benefits, free promotional trials do not; account choice/access pending, GPU still NOT_RUN.
+- Delivery7e881b3058b5eb93c06ff704800afd306ddc3154 pushed normally; GitHub CI43334149084 completed success. Automatic review initially rejected PR-description mutation for unclear disclosure authorization; user then explicitly answered Cho phép cập nhật PR #1. Requested only that exact metadata update again with explicit authorization.
