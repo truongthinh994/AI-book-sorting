@@ -468,3 +468,22 @@ Publication: implementation commit36b989c created. First push failed connection4
 - A02 DONE; A12 TODO,next comparison stage. No additional training runs started. Final repo/state/diff checks and publication/CI results are recorded after actual commands; no force/merge. Only summary docs committed,private logs/weights/data excluded.
 
 - Exact termination observed: EarlyStopping after20epochs without improvement,38epochs completed,trainer reported best epoch18. Validation metrics in report are from separate best.pt validation at batch16; default final-trainer validation differed slightly and is not mixed into the table.
+
+
+## 2026-11-13 — A16 — start controlled phase3/4 campaign
+
+- User explicitly requested remaining phases after diagnostics1/2; A640/B960/Cmerged-copy authorized,D condition not satisfied. Source73291b0,feat/three-kept-rebuild,WindowsPowerShell/Python3.11.9. Preserved all legacy dirty/untracked; no data/weights/private logs in Git.
+- Baselinechecker PASS49sources;15 unittest tests.test_kept_training/tests.test_kept_campaign PASS11.089s,exit0; HEAD + existing working-tree changes.
+- Harness syntax/independent review PASS. Reconnected existingColabT4 via native dialog,no newDrive permission. Ultralytics8.4.208; lockedsource/pretrained/best+backupSHA checked; Ccopytrainvalcounts199/1142 and41/211. Pathguards prevent rerun/overwrite.
+- Started realA640 frompretrained,seed42,batch16,150epochs/patience50,AdamW/lr0.001/AMP,save_period10; observedepoch1 andepoch2progress. SequentialB960/C640 queued,not reportedcomplete. Standardtrain/val metrics saved onlyaftercompletion; test NOT_RUN,no threshold/deploymentchoice.
+- Drive reports15JTdzWk4pUIhQLoGumgaWB1XN9L2FLpH,campaign-summary.json/progress.json forresumption. Continuecurrentcampaign,no Runall.
+
+- A completed106epochs,best56; explicit best.pttrain/val eval conf.001/NMS.7/batch16,actualargs PASS. AP50train Barcode97.99/Ripped54.36/Wornout33.16,val81.08/27.53/6.85; bestSHAb60e875fac2246b763c91bd9899227fafa1c22f435f35ce30c3cebd1df85d437. Driveexperiment-A-result.json readback matches UIJSON exactly. B960 started fresh samepretrained,actualbatch16,GPU6.35GB,noOOM; Cqueued. No finalcandidate/conclusionfromincompleteB/C.
+
+- B completed89epochs,best39; explicittrain/val best.pt evaluation observed. AP50train Barcode95.34/Ripped45.80/Wornout29.44,val83.57/17.58/6.36; observed JSON ../tmp/phase3_B_observed.json. NoOOM,batch16,GPU6.35GB. Cstarted freshpretrained onmergedcopy; BDriveJSONreadback pending,finalreportpending.
+
+- B experimentJSON readback PASS equals observedperclass metrics andactualconfig. BestSHAd1aaf590720fb0cc8bc5e71a2c1993124044b4a23541f93f262b7614a353d73e. Full89-rowCSV SHA matches run report; A/Braw reports andCSVs saved ignored locally. Cnc2/train398/val86 verified; freshpretrained training inprogress.
+
+- C completed150epochs,best129; explicit train/valAP50 Barcode99.31/80.64,Damaged85.46/16.89; AP50–95Damaged50.83/4.84. Allthreeactualargs andCSVSHAs/epochcounts independentlyPASS. Full22metricrows verified; candidateAbyvaldamagemacro5.4441%,notdeploymentlock. Cseparatetask;Dskipconditional.
+- Finalp3guard PASS969source+969derivedfiles unchanged; originalbest/backupSHAunchanged. Colabfullcampaign export equals Drivecampaign/C/integrityJSONreadback. Fullreport33fileZIP downloadedfromDrive SHA+CRCPASS; AweightsdownloadSHA PASSb60e875f... Fullreport/CSV/plots/checkpointURLs inEXPERIMENTS_R07.md andDrivefolder15JTdzWk4pUIhQLoGumgaWB1XN9L2FLpH. No heldouttest/newthreshold/multiseed.
+- Updated A16DONE/ActiveNONE; A12TODO andA13testTODO retained. Baselinechecker49sources +15tests11.089s PASS atsessionstart; reviewedharnesssyntax/report33checks/actualCSVmetrics/imageQA PASS. Finaldocumentationchecker/diff/publication/CI tracked separatelyafteractualcommands. Legacy changes remainoutsideallowlist.
