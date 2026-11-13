@@ -3,32 +3,34 @@ Last updated: 2026-11-13
 Branch: feat/three-kept-rebuild
 Last green commit: e369f0dade213445bd929c4e61b2fb96fcf3367e
 
-## Điểm tiếp tục — dataset đã khóa, Colab chờ đăng nhập
+## Điểm tiếp tục — A11/H08 smoke GPU đạt, A02 baseline sẵn sàng
 
-Người dùng xác nhận “ok tôi chấp nhận bản này, bạn làm tiếp” sau bàn giao đúng r07 proposed-02. A09/A10 DONE. Approval gắn SHA13ae187e222c1b8b33bbdb53093606cc07cb86b1f68bc465779e8f581c3cede9 nằm tại r07/reports/user-approval-proposed-02.json. Không yêu cầu duyệt split/train lần nữa.
+Người dùng đã chọn tài khoản Pro trong Colab và yêu cầu làm tiếp; đã xác nhận cấp quyền mount Drive ngay tại bước OAuth. Đã tạo folder PBL5-three-kept-r07 trong MyDrive của tài khoản Pro; tài khoản connector hiện có được editor trên đúng folder, general access restricted, tắt email thông báo. Copy ZIP/lock/notebook qua Drive API, không bật quyền file URL của extension. Không đăng email tài khoản Pro hoặc log riêng lên Git.
 
-571 ảnh/1920 hộp Barcode284/Ripped356/Wornout1280,49 cách ly.207 nhóm (26 bảo thủ/64 singleton) giữ giới hạn nhận dạng; approval không chứng minh độc lập vật lý. Train/val/test398/86/87; âm65/14/14; seed chia45/attempt25, seed train42. Nguồn/r06/review/proposal giữ nguyên.
+Notebook đang mở: https://colab.research.google.com/drive/1Z9_1-5Y0WMHzDvIOPn1d_1MGYcG7QWT6?authuser=1
+Drive: https://drive.google.com/drive/folders/1b0L0gXSYFAWRnblHw3oa_Ar6g8Igqx0D
+Summary: https://drive.google.com/file/d/1ki-XlQsorFHJhaOlwEdcw-f038mQmP9U/view
 
-Dataset r07/split-locked.zip và split-locked.lock.json đã tạo; hash độc lập tại configs/three-kept-r07.lock.json. Kiểm ZIP giải nén mới qua helper local và helper nhúng notebook PASS; train YAML không chứa test. Notebook EXPECTED đã điền, mặc định SMOKE=True/2epochs/n/batch16. Chi tiết docs/THREE_KEPT_LOCK_R07.md.
+GPU Tesla T4 14913MiB,Python3.13.16,Torch2.14.1+cu130,Ultralytics8.4.208. Drive mount và split SHA thực PASS:398/86/87,version three-kept-4c4d10dc50f0f52e8c31. Dataset/nhãn/nhóm/49 cách ly không đổi; checksum độc lập configs/three-kept-r07.lock.json. A09/A10 vẫn DONE.
 
-Drive folder https://drive.google.com/drive/folders/1nRoTh0dG7AZYbTSeEinWYDwSSkXoaGe9 chứa ZIP,lock,notebook. Colab https://colab.research.google.com/drive/1kuX3sQIOzSh2HGX70_SAZ8wdiG4m2_9E mở trong Edge, hiện Google Sign in. A11 BLOCKED chờ người dùng đăng nhập, sau đó smoke n/s, chọn batch chung16 hoặc8; H08/A02 vẫn chờ GPU thật. Không có weights hoặc chất lượng model của chiến dịch này.
+smoke-n16-01 và smoke-s16-01 mỗi2epoch,batch16,640,seed42,AdamW,lr0=.001,AMP hoàn tất; GPU_mem trong log n2.86G/s5.12G,không OOM. Đã kiểm CSV2dòng/run,checkpoint best/last tồn tại và SHA; config/seed/hash/environment khớp,check_resume nhận identity đúng và từ chối SHA sai. Các tests CPU resume giữ riêng; chạy tiếp GPU sau gián đoạn NOT_RUN. Hai smoke đã kết thúc và optimizer được Ultralytics strip; không resume chúng để biến thành baseline.
 
-## Kiểm tra
+A11/H08 DONE theo evidence smoke; A02 TODO, không tự bắt đầu task kế tiếp. Chưa có lượt100epoch,model bàn giao,threshold hoặc đánh giá test. Không dùng AP smoke để chọn model. Chi tiết docs/COLAB_SMOKE_R07.md.
 
-Baseline HEAD71be97f + legacy changes: checker PASS49sources;152tests PASS37.940s. Sau binding:15 kept/training tests PASS11.237s; real ZIP/helper validation PASS. Kết quả không gán cho HEAD nguyên trạng. Không stage thay đổi legacy có sẵn.
+## Một việc tiếp theo
+
+A02: giữ runtime và dataset hiện có; ở ô train chọn MODEL='n',GENTLE=False,SEED=42,BATCH=16,SMOKE=False,RESUME=False,RUN_TAG='n640-default-seed42-01' (kiểm tên chưa tồn tại),chạy baseline100epochs/patience20. Cloud notebook có ô audit smoke mới sau ô train; ô validation/full và test phía sau chưa chạy. Không Run all vì khối validation smoke cố ý chặn. Không yêu cầu duyệt dataset/train lần nữa.
 
 ## Human actions pending
 
-Đăng nhập Google ở tab Colab Edge, đúng tài khoản Drive kết nối, báo đã đăng nhập để tiếp tục A11. Đây là trở ngại truy cập thực tế; không phải yêu cầu duyệt dataset hay train mới. GPU/camera NOT_RUN. Không tự bắt đầu app/firmware.
+Không còn chờ đăng nhập hoặc mount cho phiên hiện tại. Không có yêu cầu người dùng mới để hoàn tất A11. Nếu runtime bị thu hồi thì xác minh mount/identity/checkpoint trước tiếp tục; quyền không tự đồng nghĩa compute units trả phí đã được xác minh.
+
+## Kiểm tra
+
+Windows/PowerShell/Python3.11.9 ../.venv-yolo/Scripts/python.exe: repository checker PASS49sources;15 kept/training tests PASS12.586s tại source5e5e29d + legacy working-tree changes. Colab GPU runtime là môi trường riêng nêu trên. Real summary đọc lại từ Drive PASS. Không gán các kết quả working tree cho pristine HEAD; giữ mọi legacy modifications ngoài commit.
 
 ## Xuất bản mã
 
 Người dùng chỉ định repo truongthinh994/AI-book-sorting; origin cũ giữ nguyên. DraftPR https://github.com/truongthinh994/AI-book-sorting/pull/1, không merge. GitHubZIP chỉ có mã/tài liệu, không chứa ảnh/weights/reviewHTML. Source branch giữ lịch sử gốc, local ref publish/ai-book-three-kept giữ lịch sử repo đích.
 
 Trước push: xác minh delivery:feat/three-kept-rebuild khớp ref publish. Commit source đúng allowlist; commit-tree từ sourceHEAD tree,parent publish, update-ref có kiểm parent rồi normalpush publish sang delivery:feat/three-kept-rebuild. Không push trực tiếp sourceHEAD khác lịch sử, không force. Giữ mọi modified/untracked legacy có sẵn; không stage chúng. CI/deliverySHA cuối ghi localpublicationreport và bàn giao.
-
-Tài khoản Drive được connector get_profile xác minh: nguyentruongthinh9904@gmail.com (Thịnh Nguyễn Trường). Đây là tài khoản lưu artifacts; không suy từ tài khoản đăng nhập ChatGPT.
-
-## Cập nhật truy cập cuối phiên
-
-Đã quan sát notebook mở thành công trong Colab bằng nguyentruongthinh9904@gmail.com, chưa kết nối runtime. Người dùng muốn chọn Gmail có Gemini Pro; đã mở trang Add another account trong Edge để người dùng đăng nhập. Chờ chốt tài khoản chạy và quyền truy cập dataset tương ứng trước smoke. Nếu khác Gmail Drive kết nối, phải đưa ZIP/lock/notebook vào đúng Drive hoặc cấu hình truy cập phù hợp, không tự chia sẻ công khai.
