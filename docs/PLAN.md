@@ -1,5 +1,7 @@
 # Kế hoạch kỹ thuật
 
+> Cập nhật 2026-11-13: người dùng đã duyệt r07 proposed-02; dataset đã khóa, notebook đã điền SHA và tải Drive. Colab đang chờ đăng nhập để smoke GPU. Xem [bàn giao hiện tại](THREE_KEPT_LOCK_R07.md); các trạng thái chưa duyệt bên dưới là lịch sử trước xác nhận.
+
 ## Bước hiện tại: Colab
 
 Theo yêu cầu tiếp nối ngày 2026-11-11, đã chuẩn bị [notebook Colab](../notebooks/damaged_books_colab.ipynb) và [hướng dẫn chạy](COLAB_TRAINING.md) cho split-reviewed-v1 (253/54/54 ảnh). Chờ người dùng chạy GPU thật; chưa nghiệm thu A02. Notebook chỉ train/validation; chọn ngưỡng và đánh giá test là bước sau. Phần ghi ưu tiên dữ liệu bên dưới là lịch sử trước khi có split.

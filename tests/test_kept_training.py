@@ -39,7 +39,12 @@ class KeptTrainingTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         nb=json.loads((root/'notebooks/three_kept_colab.ipynb').read_text(encoding='utf-8'))
         code='\n'.join(''.join(c['source']) for c in nb['cells'] if c['cell_type']=='code')
-        self.assertIn('EXPECTED = None',code)
+        # The released notebook must bind the independently shipped real split lock.
+        expected = json.loads((root/'configs/three-kept-r07.lock.json').read_text())
+        binding = next(n for n in ast.parse(code.replace('%pip install -q ultralytics==8.4.208','')).body
+                       if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='EXPECTED' for t in n.targets))
+        self.assertEqual(ast.literal_eval(binding.value),expected)
+        self.assertIn("assert EXPECTED and EXPECTED.get('zip_sha256')",code)
         self.assertIn('check_resume',code)
         for cell in nb['cells']:
             if cell['cell_type']=='code':

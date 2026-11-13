@@ -1,5 +1,7 @@
 # Chiến dịch mới: giữ Barcode / Ripped / Wornout
 
+> Cập nhật 2026-11-13: người dùng đã duyệt r07 proposed-02; dataset đã khóa, notebook đã điền SHA và tải Drive. Colab đang chờ đăng nhập để smoke GPU. Xem [bàn giao hiện tại](THREE_KEPT_LOCK_R07.md); các trạng thái chưa duyệt bên dưới là lịch sử trước xác nhận.
+
 Ngày 2026-11-12, quyết định D29 theo kế hoạch người dùng yêu cầu triển khai. D29 thay D28 cho chiến dịch này: bắt đầu từ ZIP, **bỏ Notch**, không gộp vào rách; bỏ Spot/Tag. Dữ liệu và thay đổi có sẵn giữ nguyên. Không kế thừa sửa nhãn hay approval. Collector và firmware ngoài phạm vi.
 
 ## Trạng thái thực tế

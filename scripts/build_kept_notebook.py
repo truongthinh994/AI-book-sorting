@@ -148,6 +148,17 @@ if RUN_FINAL_TEST:
     report=operating_metrics(DATA/'test/labels',testdir/'predictions/labels',FINAL_SELECTION['thresholds'])
     (testdir/'operating-metrics.json').write_text(json.dumps(report,indent=2))
 ''')
+    # Bind the released notebook to the independently published lock, when available.
+    lock_path = ROOT/'configs/three-kept-r07.lock.json'
+    if lock_path.exists():
+        expected = json.loads(lock_path.read_text(encoding='utf-8'))
+        for item in cells:
+            text = ''.join(item['source'])
+            if 'EXPECTED = None' in text:
+                text = text.replace('EXPECTED = None', 'EXPECTED = '+repr(expected))
+                text = text.replace('/MyDrive/PBL5/three-kept/split.zip', '/MyDrive/PBL5-three-kept-r07/split-locked.zip')
+                text = text.replace('/MyDrive/PBL5/three-kept/runs', '/MyDrive/PBL5-three-kept-r07/runs')
+                item['source'] = text.splitlines(keepends=True)
     notebook=dict(cells=cells,metadata=dict(kernelspec=dict(display_name='Python 3',language='python',name='python3'),
                     language_info=dict(name='python'),accelerator='GPU'),nbformat=4,nbformat_minor=5)
     target=ROOT/'notebooks/three_kept_colab.ipynb'

@@ -1,5 +1,7 @@
 # Nhãn đã chốt và đề xuất nhóm/split r07
 
+> Cập nhật 2026-11-13: người dùng đã duyệt r07 proposed-02; dataset đã khóa, notebook đã điền SHA và tải Drive. Colab đang chờ đăng nhập để smoke GPU. Xem [bàn giao hiện tại](THREE_KEPT_LOCK_R07.md); các trạng thái chưa duyệt bên dưới là lịch sử trước xác nhận.
+
 Ngày2026-11-12, người dùng xác nhận: “ok chốt nhãn, cách ly 49 ảnh, làm bước tiếp theo”. Quyết định này chốt nhãn r06 và danh sách cách ly; chưa phải duyệt nhóm/split hay cho phép bỏ gate trước train.
 
 ## Bản dữ liệu và nguồn
